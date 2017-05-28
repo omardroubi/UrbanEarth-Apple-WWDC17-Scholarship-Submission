@@ -252,8 +252,17 @@ public class HomeScene : SCNScene  {
         
         node.geometry?.firstMaterial?.isDoubleSided = true
         
-        self.rootNode.addChildNode(node)
         
+        // rotate earth
+        let action = SCNAction.rotate(by: 90*CGFloat((Double.pi)/180.0), around: SCNVector3(x:0, y:1, z:0), duration: 25)
+        
+        let repeatAction = SCNAction.repeatForever(action)
+       
+        node.runAction(repeatAction)
+
+        
+        self.rootNode.addChildNode(node)
+
         // Pyramids
                 
         if (nitrogenSelected == false) {
@@ -461,7 +470,7 @@ public class HomeScene : SCNScene  {
             let longitude: Float = city.3
             
             // Rotate according to latitude and longitude
-            pyramid.eulerAngles = SCNVector3(x:(90-latitude) * Float((M_PI)/180.0), y:longitude * Float((M_PI)/180.0), z:0)
+            pyramid.eulerAngles = SCNVector3(x:(90-latitude) * Float((Double.pi)/180.0), y:longitude * Float((Double.pi)/180.0), z:0)
             
             
             self.node.addChildNode(pyramid)
@@ -476,16 +485,4 @@ public class HomeScene : SCNScene  {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func rotate() {
-        let action = SCNAction.rotate(by: 90*CGFloat((M_PI)/180.0), around: SCNVector3(x:0, y:1, z:0), duration: 25)
-        let repeatAction = SCNAction.repeatForever(action)
-
-        if (shouldRotate == true) {
-            node.runAction(repeatAction)
-        }
-        else {
-            node.removeAllActions()
-        }
-    
-    }
 }

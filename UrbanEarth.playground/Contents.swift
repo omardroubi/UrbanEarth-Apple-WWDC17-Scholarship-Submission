@@ -83,7 +83,6 @@ sceneView.backgroundColor = UIColor(red:0.2, green:0.28, blue:0.52, alpha:0)
 var scene = HomeScene()
 sceneView.scene = scene
 scene.background.contents = #imageLiteral(resourceName: "Untitled-2BLACK.png")
-scene.rotate()
 sceneView.allowsCameraControl = true
 sceneView.autoenablesDefaultLighting = true
 
@@ -574,19 +573,6 @@ homeView.addSubview(infoViewParticulate)
 PlaygroundPage.current.liveView = homeView
 
 
-
-
-
-// AUDIO in the back
-var beepSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: "music", ofType: "mp3")!)
-
-var beepPlayer = try AVAudioPlayer(contentsOf: beepSound as URL)
-
-beepPlayer.prepareToPlay()
-
-beepPlayer.play()
-
-beepPlayer.numberOfLoops = 1000000000000000000
 
 
 
